@@ -23,7 +23,9 @@ class Clock:
 def drain(path, output):
     ids = []
     try:
-        with Queue(path) as queue:
+        # This test measures safety, not an IO deadline. Hosted Windows runners
+        # can spend >10s syncing an 80-job backlog; allow a separate test budget.
+        with Queue(path, timeout=60) as queue:
             while (claim := queue.claim(lease=60)) is not None:
                 queue.ack(claim, claim.payload)
                 ids.append(claim.id)
@@ -264,7 +266,7 @@ class QueueTests(unittest.TestCase):
         try:
             for worker in workers:
                 worker.start()
-            results = [output.get(timeout=30) for _ in workers]
+            results = [output.get(timeout=90) for _ in workers]
             for worker in workers:
                 worker.join(30)
                 self.assertEqual(worker.exitcode, 0)

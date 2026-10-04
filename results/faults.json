@@ -1,0 +1,20 @@
+{
+  "fault": "process death after effect commit, before ack",
+  "clock": "controlled advance past persisted lease deadline",
+  "scenarios": [
+    {
+      "external_deduplication": false,
+      "process_exit_code": 23,
+      "executions": 2,
+      "side_effects": 2,
+      "final_state": "done"
+    },
+    {
+      "external_deduplication": true,
+      "process_exit_code": 23,
+      "executions": 2,
+      "side_effects": 1,
+      "final_state": "done"
+    }
+  ]
+}

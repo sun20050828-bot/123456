@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "durableq-lab"
+version = "0.1.0"
+description = "A reproducible systems lab for durable queues, leases and failure semantics"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+durableq = "durableq.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["durableq*"]

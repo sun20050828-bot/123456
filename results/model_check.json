@@ -1,0 +1,33 @@
+{
+  "fenced": {
+    "safe": true,
+    "visited_states": 9,
+    "transitions": 10,
+    "counterexample": null,
+    "attempt_bound": 2
+  },
+  "status_only_ack": {
+    "safe": false,
+    "visited_states": 5,
+    "transitions": 4,
+    "counterexample": [
+      "claim token-1",
+      "deadline expires",
+      "ack token-1"
+    ],
+    "attempt_bound": 2
+  },
+  "deadline_only_ack": {
+    "safe": false,
+    "visited_states": 6,
+    "transitions": 6,
+    "counterexample": [
+      "claim token-1",
+      "handler fails",
+      "claim token-2",
+      "ack token-1"
+    ],
+    "attempt_bound": 2
+  },
+  "scope": "one job, two claim generations, abstract deadline; safety only; not SQL verification"
+}
